@@ -21,31 +21,31 @@ jobs:
 
     - name: Build and run Laradock containers
       run: |
-        cd ../laradock
+        cd laradock
         docker compose up -d nginx mysql redis workspace
 
     - name: Install Laravel dependencies
       run: |
-        cd ../laradock/workspace 
+        cd laradock/workspace 
         composer install
 
     - name: Generate application key
       run: |
-        cd ../laradock/workspace
+        cd laradock/workspace
         php artisan key:generate
 
     - name: Run database migrations
       run: |
-        cd ../laradock/workspace
+        cd laradock/workspace
         php artisan migrate --force
 
     - name: Run tests
       run: |
-        cd ../laradock/workspace
+        cd laradock/workspace
         php artisan test
 
     - name: Stop Laradock containers
       run: |
-        cd ../laradock
+        cd laradock
         docker-compose stop
         
