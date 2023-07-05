@@ -1,12 +1,12 @@
 name: Laravel
 
 on:
-  # push:
-  #   branches: [ "main" ]
-  # pull_request:
-  #   branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
-jobs:
+jobs: 
   laravel-tests:
 
     runs-on: windows-latest
