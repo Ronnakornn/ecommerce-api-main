@@ -17,3 +17,16 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+Thumbs.db
+/nbproject/*
+.editorconfig
+_ide_helper.php
+.phpstorm.meta.php
+gulpfile.js
+*.code-workspace
+laradock/
+laradock/*
+vendor/*
+/vendor/*
+composer.lock

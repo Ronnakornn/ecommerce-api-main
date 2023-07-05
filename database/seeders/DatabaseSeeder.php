@@ -2,21 +2,30 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
+    use WithoutModelEvents; // ไม่ต้องจับ event ของ model ในการทำ seeder ข้อมูล
+
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        // For create super admin
+        User::factory()->create([
+            'name' => 'Super Admin',
+            'email' => 'super@admin.com',
+            'password' => bcrypt(12345),
+            'user_role' => 'SuperAdmin'
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call([
+            UserSeeder::class,
+            CategorySeeder::class
+        ]);
     }
 }
