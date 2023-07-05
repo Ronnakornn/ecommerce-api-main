@@ -23,7 +23,7 @@ jobs:
 
     - name: Install Laravel dependencies
       run: |
-        cd ../laradock/workspace
+        cd ../laradock/workspace 
         composer install
 
     - name: Generate application key
@@ -45,3 +45,4 @@ jobs:
       run: |
         cd ../laradock
         docker-compose stop
+        
