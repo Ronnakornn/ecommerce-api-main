@@ -9,7 +9,7 @@ on:
 jobs: 
   laravel-tests:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
        steps:
@@ -19,7 +19,7 @@ jobs:
     - name: Build and run Laradock containers
       run: |
         cd ../laradock
-        docker-compose up -d nginx mysql redis workspace
+        docker compose up -d nginx mysql redis workspace
 
     - name: Install Laravel dependencies
       run: |
