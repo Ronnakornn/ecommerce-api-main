@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
-        php-version: '8.0'
+        php-version: '8.2'
     - uses: actions/checkout@v3
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
@@ -26,26 +26,41 @@ jobs:
 
     - name: Install Laravel dependencies
       run: |
-        cd laradock/workspace 
+        cd laradock
+        docker-compose exec workspace bash
         composer install
 
     - name: Generate application key
       run: |
-        cd laradock/workspace
+        cd laradock
+        docker-compose exec workspace bash
         php artisan key:generate
 
     - name: Run database migrations
       run: |
-        cd laradock/workspace
+        cd laradock
+        docker-compose exec workspace bash
         php artisan migrate --force
+
+    - name: Run passport install
+      run: |
+        cd laradock
+        docker-compose exec workspace bash
+        php artisan passport:install --uuids
+
+    - name: Run seed
+      run: |
+        cd laradock
+        docker-compose exec workspace bash
+        php artisan db:seed
 
     - name: Run tests
       run: |
         cd laradock/workspace
-        php artisan test
+        php artisan test --coverage
 
     - name: Stop Laradock containers
       run: |
         cd laradock
-        docker-compose stop
+        docker compose stop
         
