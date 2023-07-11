@@ -18,6 +18,7 @@ jobs:
 
     - name: Build and run Laradock containers
       run: |
+        pwa
         cd laradock
         docker compose up -d nginx mysql redis workspace
 
